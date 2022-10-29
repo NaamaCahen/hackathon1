@@ -1,0 +1,59 @@
+Html
+
+1.home page-index.html
+-background-image-brain
+-h1: Welcome to CORTEX
+--h2: the brain party game!
+--p: scroll down for the game instructions +icon-arrow
+-instructions: section 
+  the goal of the game is to achieve all the 4 parts of the brain.
+  How will you get them??
+  by solving the 4 types of challenges...
+  you have just two chances for each type of challenge... be carefull!
+  each challenge is limited by time, be quick!
+ p:  ready?! click to start the game!
+ button : start - leads to the game page 
+  
+2. game page- game.html
+ 4 pieces of brain-dispaly none;
+ h1: challenge#x : <challenge name>
+ h2: description of the challenge
+ section: the challe ge itself
+ timer
+ (chance1/2)
+  div: answers box
+
+3. answer page- answer.html
+  V display: 
+   p-you get one more piece of brain! 
+   button-next challenge 
+  X display:
+   p-oops! try your chance with the next challenge...
+   button-next challenge 
+  time's up display:
+    oops! time is up!
+    try your chance with the next challenge...
+
+
+4.result page - result.html
+
+ not mandatory:
+ add sounds
+ 2nd chance
+
+
+Java Script
+
+when an answer is clicked: func-rightanswer()/wrongAnswer()
+-change the opacity of the chosen answer
+-stop the timer
+-rightAnswer()
+ -answer.html=> with V display 
+ -brain++
+ -wrongAnswer()
+  -answer.html => with X display
+
+when the timer ends:
+answer.html => time's up display
+
+the brain: an array?
