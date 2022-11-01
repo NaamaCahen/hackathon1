@@ -1,4 +1,4 @@
-(function displayFirstChallenge(){
+(function displayFirstChallenge() {
     nextChallenge(1);
 })()
 function nextChallenge(challengeNum) {
@@ -29,7 +29,7 @@ function displayChallenge1(h1, h3, section, timer, answers) {
     h3.textContent = "choose the color which is colored in the same color of its name!"
     colorChallenge(section);
     answers = answersBox(answers, 1);
-    timerFunc(timer);
+    timerFunc(timer, 15);
 }
 function colorChallenge(section) {
     let img1 = document.createElement("img");
@@ -51,20 +51,30 @@ function displayChallenge4(h1, h3, section, timer, answers) {
 
 }
 
-function timerFunc(timer) {
+function timerFunc(timer, seconds) {
+    let timerInterval = setInterval(() => {
+        seconds--;
+        if (seconds>0){
+            document.querySelector("#timer>p").textContent=`${seconds}`;
+        }else if(seconds===0){
+            document.querySelector("#timer>p").textContent=`${seconds}`;
+            clearInterval(timerInterval);
+            //go to answer.html display-wrong
+        }
+    }, 1000)
 
 }
 function answersBox(answersDiv, challengeNum) {
-   let pChoose= document.createElement("p");
-   pChoose.textContent="click on the correct answer:";
-   answersDiv.appendChild(pChoose);
+    let pChoose = document.createElement("p");
+    pChoose.textContent = "click on the correct answer:";
+    answersDiv.appendChild(pChoose);
     if (challengeNum === 1) {
         const colorsArray = ["white ", "orange ", "violet ", "red ", "blue ", "pink ", "yellow ", "black ", "green "];
         for (const color of colorsArray) {
             let span = document.createElement("span");
-            span.textContent=color;
+            span.textContent = color;
             answersDiv.appendChild(span);
-            span.addEventListener('click',answerPage);
+            span.addEventListener('click', answerPage);
         }
     } else if (challengeNum === 2) {
 
@@ -74,8 +84,8 @@ function answersBox(answersDiv, challengeNum) {
 
     }
 }
-function answerPage(event){
-    event.target.style.opacity="50%";
+function answerPage(event) {
+    event.target.style.opacity = "50%";
     //go to answer.html
-    event.target.href="answer.html"
+    event.target.href = "answer.html"
 }
