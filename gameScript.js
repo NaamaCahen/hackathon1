@@ -1,6 +1,19 @@
+let currentChallenge = 1;
+let isClicked = false;
 (function displayFirstChallenge() {
     nextChallenge(1);
 })()
+function btnNext() {
+    currentChallenge++;
+    document.getElementById("next").style.display = "none"//rehide the button
+    //cleaning the answers box
+    let spans = document.querySelectorAll("#answersDiv span");
+    spans.forEach((element) => element.remove());
+    //reupdating 
+    document.querySelector("#timer p").textContent="15";
+    //calling the next challenge
+    nextChallenge(currentChallenge);
+}
 function nextChallenge(challengeNum) {
     let h1 = document.getElementById("challengeTitle");
     let h3 = document.getElementById("challengeDescription");
@@ -30,8 +43,8 @@ function displayChallenge1(h1, h3, section, timer, answers) {
     h3.textContent = "choose the color which is colored in the same color of its name!"
     const src = "./images/colors.jpg";
     challengeImage(section, src);
-    answersBox(answers, 1);
-    timerFunc(timer, 15);
+    const interval = timerFunc(timer, 15);
+    answersBox(answers, 1, interval);
 }
 
 function displayChallenge2(h1, h3, section, timer, answers) {
@@ -39,51 +52,51 @@ function displayChallenge2(h1, h3, section, timer, answers) {
     h3.textContent = "choose the most frequent element!"
     const src = "./images/frequency.jpg";
     challengeImage(section, src);
-    answersBox(answers, 2);
-    timerFunc(timer, 15);
+    const interval = timerFunc(timer, 15);
+    answersBox(answers, 2, interval);
 }
 function displayChallenge3(h1, h3, section, timer, answers) {
     h1.textContent = "Challenge #3 -Puzzle";
     h3.textContent = "choose the piece of puzzle which will complete the puzzle!"
     const src = "./images/puzzle.jpg";
     challengeImage(section, src);
-    answersBox(answers, 3);
-    timerFunc(timer, 15);
+    const interval = timerFunc(timer, 15);
+    answersBox(answers, 3, interval);
 }
 function displayChallenge4(h1, h3, section, timer, answers) {
     h1.textContent = "Challenge #4 -Labyrinth";
     h3.textContent = "were will the arrow arrive to? \n choose the correct destination!"
     const src = "./images/labyrinth.jpg";
     challengeImage(section, src);
-    answersBox(answers, 4);
-    timerFunc(timer, 15);
+    const interval = timerFunc(timer, 15);
+    answersBox(answers, 4, interval);
+
 }
 function challengeImage(section, src) {
-    let img1 = document.createElement("img");
+    let img1 = document.querySelector("section img");
     img1.src = src;
     img1.style.width = "35%";
     img1.alt = "colors";
     section.appendChild(img1);
 }
 function timerFunc(timer, seconds) {
-    let timerInterval = setInterval(() => {
+    const timerInterval = setInterval(function () {
         seconds--;
-        if (seconds > 0) {
+        if (seconds >= 0) {
             document.querySelector("#timer>p").textContent = `${seconds}`;
-        } else if (seconds === 0) {
-            document.querySelector("#timer>p").textContent = `${seconds}`;
+        } else if (seconds < 0) {
+            document.querySelector("#timer>p").textContent = "--";
             clearInterval(timerInterval);
             //alert -time's up!
             alert(`oops... \n time's up! \n try your chance with the next challenge...`)
             document.getElementById("next").style.display = 'block';//display the button-next challenge
-        }
+        } 
+       
     }, 1000)
-
+    return timerInterval;
 }
-function answersBox(answersDiv, challengeNum) {
-    let pChoose = document.createElement("p");
-    pChoose.textContent = "click on the correct answer:";
-    answersDiv.appendChild(pChoose);
+function answersBox(answersDiv, challengeNum, interval) {
+
     if (challengeNum === 1) {
         const colorsArray = ["white", "orange", "violet", "red", "blue", "pink", "yellow", "black", "green"];
         for (const color of colorsArray) {
@@ -91,7 +104,7 @@ function answersBox(answersDiv, challengeNum) {
             span.textContent = color;
             answersDiv.appendChild(span);
             span.addEventListener("click", function (event) {
-                answerAlert(event, challengeNum)
+                answerAlert(event, challengeNum, interval)
             });
         }
     } else if (challengeNum === 2) {
@@ -106,7 +119,7 @@ function answersBox(answersDiv, challengeNum) {
             // spanContainer.append(spanBall, spanNum);
             answersDiv.appendChild(spanNum);
             spanNum.addEventListener("click", function (event) {
-                answerAlert(event, challengeNum)
+                answerAlert(event, challengeNum, interval)
             });
         }
     } else if (challengeNum === 3) {
@@ -115,7 +128,7 @@ function answersBox(answersDiv, challengeNum) {
             let span = document.createElement("span");
             span.textContent = `${option}`;
             span.addEventListener("click", function (event) {
-                answerAlert(event, challengeNum)
+                answerAlert(event, challengeNum, interval)
             });
             answersDiv.appendChild(span);
         }
@@ -126,13 +139,16 @@ function answersBox(answersDiv, challengeNum) {
             let span = document.createElement("span");
             span.textContent = `${option}`;
             span.addEventListener("click", function (event) {
-                answerAlert(event, challengeNum)
+                answerAlert(event, challengeNum, interval)
             });
             answersDiv.appendChild(span);
         }
     }
 }
-function answerAlert(event, num) {
+function answerAlert(event, num, interval) {
+    clearInterval(interval);
+    isClicked = true;
+    document.querySelector("#timer p").textContent = "--";
     event.target.style.opacity = "50%";
     let isTrue = false;
     switch (num) {
@@ -160,7 +176,7 @@ function answerAlert(event, num) {
         default:
             break;
     }
-   
+
     if (isTrue) {
         alert(`BRAVO!! \n you get one more piece of brain!`);
     } else {
