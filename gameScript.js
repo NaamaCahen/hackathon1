@@ -85,32 +85,38 @@ function answersBox(answersDiv, challengeNum) {
     pChoose.textContent = "click on the correct answer:";
     answersDiv.appendChild(pChoose);
     if (challengeNum === 1) {
-        const colorsArray = ["white ", "orange ", "violet ", "red ", "blue ", "pink ", "yellow ", "black ", "green "];
+        const colorsArray = ["white", "orange", "violet", "red", "blue", "pink", "yellow", "black", "green"];
         for (const color of colorsArray) {
             let span = document.createElement("span");
             span.textContent = color;
             answersDiv.appendChild(span);
-            span.addEventListener('click', answerAlert,challengeNum);
+            span.addEventListener("click", function (event) {
+                answerAlert(event, challengeNum)
+            });
         }
     } else if (challengeNum === 2) {
         const ballsArray = [1, 14, 8, 11];
         for (let i = 0; i < ballsArray.length; i++) {
-            let spanContainer = document.createElement("span");
-            let spanBall = document.createElement("span");
-            spanBall.textContent = "sports_baseball";
-            spanBall.classList.add("material-symbols-outlined");
+            // let spanContainer = document.createElement("span");
+            // let spanBall = document.createElement("span");
+            // spanBall.textContent = "sports_baseball";
+            // spanBall.classList.add("material-symbols-outlined");
             let spanNum = document.createElement("span");
             spanNum.textContent = `${ballsArray[i]}`;
-            spanContainer.append(spanBall, spanNum);
-            answersDiv.appendChild(spanContainer);
-            spanContainer.addEventListener('click', answerAlert,challengeNum);
+            // spanContainer.append(spanBall, spanNum);
+            answersDiv.appendChild(spanNum);
+            spanNum.addEventListener("click", function (event) {
+                answerAlert(event, challengeNum)
+            });
         }
     } else if (challengeNum === 3) {
         const optionsArr = ["A ", "B ", "C "];
         for (const option of optionsArr) {
             let span = document.createElement("span");
             span.textContent = `${option}`;
-            span.addEventListener("click", answerAlert,challengeNum);
+            span.addEventListener("click", function (event) {
+                answerAlert(event, challengeNum)
+            });
             answersDiv.appendChild(span);
         }
 
@@ -119,12 +125,14 @@ function answersBox(answersDiv, challengeNum) {
         for (const option of optionsArr) {
             let span = document.createElement("span");
             span.textContent = `${option}`;
-            span.addEventListener("click", answerAlert,challengeNum);
+            span.addEventListener("click", function (event) {
+                answerAlert(event, challengeNum)
+            });
             answersDiv.appendChild(span);
         }
     }
 }
-function answerAlert(event,num) {
+function answerAlert(event, num) {
     event.target.style.opacity = "50%";
     let isTrue = false;
     switch (num) {
@@ -134,41 +142,25 @@ function answerAlert(event,num) {
             }
             break;
         case 2:
-            if(event.target.spanNum.textContent==="8"){
-                isTrue=true;
+            if (event.target.textContent === "8") {
+                isTrue = true;
             }
             break;
         case 3:
-            if(event.target.textContent==="B"){
-                isTrue=true;
+            if (event.target.textContent === "B ") {
+                isTrue = true;
             }
             break;
         case 4:
-            if(event.target.textContent==="C"){
-                isTrue=true;
+            if (event.target.textContent === "C ") {
+                isTrue = true;
             }
             break;
 
         default:
             break;
     }
-    // if (num === 1) {
-    //     if (event.target.textContent === "yellow") {
-    //         isTrue = true;
-    //     }
-    // } else if (num === 2) {
-    //     if (event.target.spanNum.textContent === "8") {
-    //         isTrue = true;
-    //     }
-    // } else if (num === 3) {
-    //     if (event.target.textContent === "B") {
-    //         isTrue = true;
-    //     }
-    // } else if (num === 4) {
-    //     if (event.target.textContent === "C") {
-    //         isTrue = true;
-    //     }
-    // }
+   
     if (isTrue) {
         alert(`BRAVO!! \n you get one more piece of brain!`);
     } else {
