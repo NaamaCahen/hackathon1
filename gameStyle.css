@@ -10,3 +10,10 @@
 #next{
   display: none;
 }
+
+#brainParts{
+  display: none;
+  position: fixed;
+  right: 5vw;
+  top: 5vh;
+}
