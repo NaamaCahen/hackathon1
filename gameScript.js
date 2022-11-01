@@ -60,6 +60,7 @@ function timerFunc(timer, seconds) {
             document.querySelector("#timer>p").textContent=`${seconds}`;
             clearInterval(timerInterval);
             //go to answer.html display-wrong
+            window.location.href="answer.html";
         }
     }, 1000)
 
@@ -87,5 +88,5 @@ function answersBox(answersDiv, challengeNum) {
 function answerPage(event) {
     event.target.style.opacity = "50%";
     //go to answer.html
-    event.target.href = "answer.html"
+    window.location.href = "answer.html";
 }
