@@ -1,5 +1,5 @@
 let currentChallenge = 1;
-let isClicked = false;
+let brain = 0;
 (function displayFirstChallenge() {
     nextChallenge(1);
 })()
@@ -10,7 +10,7 @@ function btnNext() {
     let spans = document.querySelectorAll("#answersDiv span");
     spans.forEach((element) => element.remove());
     //reupdating 
-    document.querySelector("#timer p").textContent="15";
+    document.querySelector("#timer p").textContent = "15";
     //calling the next challenge
     nextChallenge(currentChallenge);
 }
@@ -34,7 +34,6 @@ function nextChallenge(challengeNum) {
             displayChallenge4(h1, h3, section, timer, answers);
             break;
         default:
-            displayChallenge1(h1, h3, section, timer, answers);
             break;
     }
 }
@@ -90,8 +89,8 @@ function timerFunc(timer, seconds) {
             //alert -time's up!
             alert(`oops... \n time's up! \n try your chance with the next challenge...`)
             document.getElementById("next").style.display = 'block';//display the button-next challenge
-        } 
-       
+        }
+
     }, 1000)
     return timerInterval;
 }
@@ -179,9 +178,35 @@ function answerAlert(event, num, interval) {
 
     if (isTrue) {
         alert(`BRAVO!! \n you get one more piece of brain!`);
+        brain++;
+        const brainImg = document.getElementById("brainParts");
+        switch (brain) {
+            case 1: {
+                brainImg.src = "./images/brain1.jpg";
+                brainImg.style.display = "block";
+            }
+                break;
+            case 2:
+                brainImg.src = "./images/brain2.jpg";
+                break;
+            case 3:
+                brainImg.src = "./images/brain3.jpg";
+                break;
+            case 4:
+                brainImg.src = "./images/brain4.jpg";
+                break;
+            default:
+                break;
+        }
     } else {
         alert(`oops... \n your answer was wrong... \n try your chance with the next challenge...`)
     }
+    if(num<4){
     document.getElementById("next").style.display = 'block';
+}else if(num===4){
+    const btnResults=document.getElementById("results");
+    btnResults.style.display="block";
+    document.querySelector("a").href="finalResults.html?brain="+brain;
+}
 }
 
