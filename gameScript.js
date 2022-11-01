@@ -73,8 +73,9 @@ function timerFunc(timer, seconds) {
         } else if (seconds === 0) {
             document.querySelector("#timer>p").textContent = `${seconds}`;
             clearInterval(timerInterval);
-            //go to answer.html display-wrong
-            window.location.href = "answer.html";
+            //alert -time's up!
+            alert(`oops... \n time's up! \n try your chance with the next challenge...`)
+            document.getElementById("next").style.display = 'block';//display the button-next challenge
         }
     }, 1000)
 
@@ -84,32 +85,38 @@ function answersBox(answersDiv, challengeNum) {
     pChoose.textContent = "click on the correct answer:";
     answersDiv.appendChild(pChoose);
     if (challengeNum === 1) {
-        const colorsArray = ["white ", "orange ", "violet ", "red ", "blue ", "pink ", "yellow ", "black ", "green "];
+        const colorsArray = ["white", "orange", "violet", "red", "blue", "pink", "yellow", "black", "green"];
         for (const color of colorsArray) {
             let span = document.createElement("span");
             span.textContent = color;
             answersDiv.appendChild(span);
-            span.addEventListener('click', answerPage);
+            span.addEventListener("click", function (event) {
+                answerAlert(event, challengeNum)
+            });
         }
     } else if (challengeNum === 2) {
         const ballsArray = [1, 14, 8, 11];
         for (let i = 0; i < ballsArray.length; i++) {
-            let spanContainer = document.createElement("span");
-            let spanBall = document.createElement("span");
-            spanBall.textContent = "sports_baseball";
-            spanBall.classList.add("material-symbols-outlined");
+            // let spanContainer = document.createElement("span");
+            // let spanBall = document.createElement("span");
+            // spanBall.textContent = "sports_baseball";
+            // spanBall.classList.add("material-symbols-outlined");
             let spanNum = document.createElement("span");
             spanNum.textContent = `${ballsArray[i]}`;
-            spanContainer.append(spanBall, spanNum);
-            answersDiv.appendChild(spanContainer);
-            spanContainer.addEventListener('click', answerPage);
+            // spanContainer.append(spanBall, spanNum);
+            answersDiv.appendChild(spanNum);
+            spanNum.addEventListener("click", function (event) {
+                answerAlert(event, challengeNum)
+            });
         }
     } else if (challengeNum === 3) {
         const optionsArr = ["A ", "B ", "C "];
         for (const option of optionsArr) {
             let span = document.createElement("span");
             span.textContent = `${option}`;
-            span.addEventListener("click", answerPage);
+            span.addEventListener("click", function (event) {
+                answerAlert(event, challengeNum)
+            });
             answersDiv.appendChild(span);
         }
 
@@ -118,13 +125,47 @@ function answersBox(answersDiv, challengeNum) {
         for (const option of optionsArr) {
             let span = document.createElement("span");
             span.textContent = `${option}`;
-            span.addEventListener("click", answerPage);
+            span.addEventListener("click", function (event) {
+                answerAlert(event, challengeNum)
+            });
             answersDiv.appendChild(span);
         }
     }
 }
-function answerPage(event) {
+function answerAlert(event, num) {
     event.target.style.opacity = "50%";
-    //go to answer.html
-    window.location.href = "answer.html";
+    let isTrue = false;
+    switch (num) {
+        case 1:
+            if (event.target.textContent === "yellow") {
+                isTrue = true;
+            }
+            break;
+        case 2:
+            if (event.target.textContent === "8") {
+                isTrue = true;
+            }
+            break;
+        case 3:
+            if (event.target.textContent === "B ") {
+                isTrue = true;
+            }
+            break;
+        case 4:
+            if (event.target.textContent === "C ") {
+                isTrue = true;
+            }
+            break;
+
+        default:
+            break;
+    }
+   
+    if (isTrue) {
+        alert(`BRAVO!! \n you get one more piece of brain!`);
+    } else {
+        alert(`oops... \n your answer was wrong... \n try your chance with the next challenge...`)
+    }
+    document.getElementById("next").style.display = 'block';
 }
+
