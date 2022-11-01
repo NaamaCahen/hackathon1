@@ -1,3 +1,6 @@
+(function displayFirstChallenge(){
+    nextChallenge(1);
+})()
 function nextChallenge(challengeNum) {
     let h1 = document.getElementById("challengeTitle");
     let h3 = document.getElementById("challengeDescription");
@@ -74,5 +77,5 @@ function answersBox(answersDiv, challengeNum) {
 function answerPage(event){
     event.target.style.opacity="50%";
     //go to answer.html
-
+    event.target.href="answer.html"
 }
