@@ -25,22 +25,27 @@ function nextChallenge(challengeNum) {
     }
 }
 function displayChallenge1(h1, h3, section, timer, answers) {
-    h1.textContent = "Challenge #1"
+    h1.textContent = "Challenge #1 -Colors"
     h3.textContent = "choose the color which is colored in the same color of its name!"
-    colorChallenge(section);
-    answers = answersBox(answers, 1);
+    const src="./images/colors.jpg";
+    challengeImage(section,src);
+    answersBox(answers, 1);
     timerFunc(timer, 15);
 }
-function colorChallenge(section) {
+function challengeImage(section,src) {
     let img1 = document.createElement("img");
-    img1.src = "./images/colors.jpg";
+    img1.src = src;
     img1.style.width = "35%";
     img1.alt = "colors";
     section.appendChild(img1);
 }
 function displayChallenge2(h1, h3, section, timer, answers) {
-    h1.textContent = "Challenge #2"
-
+    h1.textContent = "Challenge #2 -Frequency";
+    h3.textContent="choose the most frequent element!"
+    const src="./images/frequency.jpg";
+    challengeImage(section,src);
+    answersBox(answers, 2);
+    timerFunc(timer, 15);
 }
 function displayChallenge3(h1, h3, section, timer, answers) {
     h1.textContent = "Challenge #3"
@@ -78,7 +83,18 @@ function answersBox(answersDiv, challengeNum) {
             span.addEventListener('click', answerPage);
         }
     } else if (challengeNum === 2) {
-
+        const ballsArray=[1,14,8,11];
+        for(let i=0;i<ballsArray.length;i++){
+            let spanContainer=document.createElement("span");
+            let spanBall = document.createElement("span");
+            spanBall.textContent ="sports_baseball";
+            spanBall.classList.add("material-symbols-outlined");
+            let spanNum=document.createElement("span");
+            spanNum.textContent=`${ballsArray[i]}`;
+            spanContainer.append(spanBall,spanNum);
+            answersDiv.appendChild(spanContainer);
+            spanContainer.addEventListener('click', answerPage);
+        }
     } else if (challengeNum === 3) {
 
     } else if (challengeNum === 4) {
