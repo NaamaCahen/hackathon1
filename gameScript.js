@@ -1,5 +1,5 @@
 (function displayFirstChallenge() {
-    nextChallenge(1);
+    nextChallenge(3);
 })()
 function nextChallenge(challengeNum) {
     let h1 = document.getElementById("challengeTitle");
@@ -48,8 +48,12 @@ function displayChallenge2(h1, h3, section, timer, answers) {
     timerFunc(timer, 15);
 }
 function displayChallenge3(h1, h3, section, timer, answers) {
-    h1.textContent = "Challenge #3"
-
+    h1.textContent = "Challenge #3 -Puzzle";
+    h3.textContent="choose the piece of puzzle which will complete the puzzle!"
+    const src="./images/puzzle.jpg";
+    challengeImage(section,src);
+    answersBox(answers, 3);
+    timerFunc(timer, 15);
 }
 function displayChallenge4(h1, h3, section, timer, answers) {
     h1.textContent = "Challenge #4"
@@ -96,6 +100,13 @@ function answersBox(answersDiv, challengeNum) {
             spanContainer.addEventListener('click', answerPage);
         }
     } else if (challengeNum === 3) {
+        const optionsArr=["A ","B ","C "];
+        for (const option of optionsArr) {
+            let span=document.createElement("span");
+            span.textContent=`${option}`;
+            span.addEventListener("click",answerPage);
+            answersDiv.appendChild(span);
+        }
 
     } else if (challengeNum === 4) {
 
