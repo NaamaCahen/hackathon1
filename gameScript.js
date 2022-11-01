@@ -11,6 +11,7 @@ function btnNext() {
     spans.forEach((element) => element.remove());
     //reupdating 
     document.querySelector("#timer p").textContent = "15";
+    document.getElementById("answersDiv").style.display='block';
     //calling the next challenge
     nextChallenge(currentChallenge);
 }
@@ -89,6 +90,7 @@ function timerFunc(timer, seconds) {
             //alert -time's up!
             alert(`oops... \n time's up! \n try your chance with the next challenge...`)
             document.getElementById("next").style.display = 'block';//display the button-next challenge
+            document.getElementById("answersDiv").style.display='none';//hide the answers box
         }
 
     }, 1000)
@@ -146,7 +148,7 @@ function answersBox(answersDiv, challengeNum, interval) {
 }
 function answerAlert(event, num, interval) {
     clearInterval(interval);
-    isClicked = true;
+    document.getElementById("answersDiv").style.display='none';//hide the answers box
     document.querySelector("#timer p").textContent = "--";
     event.target.style.opacity = "50%";
     let isTrue = false;
