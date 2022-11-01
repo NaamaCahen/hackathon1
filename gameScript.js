@@ -34,7 +34,6 @@ function nextChallenge(challengeNum) {
             displayChallenge4(h1, h3, section, timer, answers);
             break;
         default:
-            displayChallenge1(h1, h3, section, timer, answers);
             break;
     }
 }
@@ -202,6 +201,12 @@ function answerAlert(event, num, interval) {
     } else {
         alert(`oops... \n your answer was wrong... \n try your chance with the next challenge...`)
     }
+    if(num<4){
     document.getElementById("next").style.display = 'block';
+}else if(num===4){
+    const btnResults=document.getElementById("results");
+    btnResults.style.display="block";
+    document.querySelector("a").href="finalResults.html?brain="+brain;
+}
 }
 

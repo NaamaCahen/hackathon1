@@ -12,8 +12,12 @@
 }
 
 #brainParts{
+  width: 10vw;
   display: none;
   position: fixed;
   right: 5vw;
   top: 5vh;
+}
+#results{
+  display: none;
 }
