@@ -1,23 +1,64 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  font-family: 'Poor Story', cursive;
 
-.material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48
+  /* padding: 0px; */
 }
 
-#next{
+body {
+  font-family: 'Poor Story', cursive;
+  background-image: radial-gradient(#0ddae9, #e8eaf6);
+}
+
+#challengeTitle {
+  font-size: 5vw;
+  text-align: center;
+}
+
+#challengeDescription {
+  font-size: 3vw;
+  text-align: center;
+}
+
+#container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#timerAndAnswers {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#timer {
+  font-size: 7vw;
+}
+
+#answersDiv {
+  font-size: 3vw;
+}
+
+.ansItems {
+  margin: 5px;
+  border: 2px solid black;
+}
+
+#next ,#results{
   display: none;
+  margin: auto;
+  font-size: 3vw;
+  border-radius: 10%;
 }
 
-#brainParts{
+#brainParts {
   width: 10vw;
   display: none;
   position: fixed;
   right: 5vw;
   top: 5vh;
+  border-radius: 30%;
 }
-#results{
-  display: none;
-}
+

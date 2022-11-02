@@ -75,7 +75,7 @@ function displayChallenge4(h1, h3, section, timer, answers) {
 function challengeImage(section, src) {
     let img1 = document.querySelector("section img");
     img1.src = src;
-    img1.style.width = "35%";
+    img1.style.width = "35vw";
     img1.alt = "colors";
     section.appendChild(img1);
 }
@@ -104,6 +104,7 @@ function answersBox(answersDiv, challengeNum, interval) {
             let span = document.createElement("span");
             span.textContent = color;
             answersDiv.appendChild(span);
+            span.classList.add("ansItems")
             span.addEventListener("click", function (event) {
                 answerAlert(event, challengeNum, interval)
             });
@@ -111,13 +112,9 @@ function answersBox(answersDiv, challengeNum, interval) {
     } else if (challengeNum === 2) {
         const ballsArray = [1, 14, 8, 11];
         for (let i = 0; i < ballsArray.length; i++) {
-            // let spanContainer = document.createElement("span");
-            // let spanBall = document.createElement("span");
-            // spanBall.textContent = "sports_baseball";
-            // spanBall.classList.add("material-symbols-outlined");
             let spanNum = document.createElement("span");
             spanNum.textContent = `${ballsArray[i]}`;
-            // spanContainer.append(spanBall, spanNum);
+            spanNum.classList.add("ansItems");
             answersDiv.appendChild(spanNum);
             spanNum.addEventListener("click", function (event) {
                 answerAlert(event, challengeNum, interval)
@@ -128,6 +125,7 @@ function answersBox(answersDiv, challengeNum, interval) {
         for (const option of optionsArr) {
             let span = document.createElement("span");
             span.textContent = `${option}`;
+            span.classList.add("ansItems");
             span.addEventListener("click", function (event) {
                 answerAlert(event, challengeNum, interval)
             });
@@ -139,6 +137,7 @@ function answersBox(answersDiv, challengeNum, interval) {
         for (const option of optionsArr) {
             let span = document.createElement("span");
             span.textContent = `${option}`;
+            span.classList.add("ansItems");
             span.addEventListener("click", function (event) {
                 answerAlert(event, challengeNum, interval)
             });
