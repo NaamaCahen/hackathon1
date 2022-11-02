@@ -11,7 +11,7 @@ function btnNext() {
     spans.forEach((element) => element.remove());
     //reupdating 
     document.querySelector("#timer p").textContent = "15";
-    document.getElementById("answersDiv").style.display='block';
+    document.getElementById("answersDiv").style.display = 'block';
     //calling the next challenge
     nextChallenge(currentChallenge);
 }
@@ -88,9 +88,16 @@ function timerFunc(timer, seconds) {
             document.querySelector("#timer>p").textContent = "--";
             clearInterval(timerInterval);
             //alert -time's up!
-            alert(`oops... \n time's up! \n try your chance with the next challenge...`)
-            document.getElementById("next").style.display = 'block';//display the button-next challenge
-            document.getElementById("answersDiv").style.display='none';//hide the answers box
+            if (currentChallenge != 4) {
+                alert(`oops... \n time's up! \n try your chance with the next challenge...`)
+                document.getElementById("next").style.display = 'block';//display the button-next challenge
+                document.getElementById("answersDiv").style.display = 'none';//hide the answers box
+            } else {
+                alert(`oops... \n time's up!`);
+                const btnResults = document.getElementById("results");
+                btnResults.style.display = "block";
+                document.querySelector("a").href = "finalResults.html?brain=" + brain;
+            }
         }
 
     }, 1000)
@@ -147,7 +154,7 @@ function answersBox(answersDiv, challengeNum, interval) {
 }
 function answerAlert(event, num, interval) {
     clearInterval(interval);
-    document.getElementById("answersDiv").style.display='none';//hide the answers box
+    document.getElementById("answersDiv").style.display = 'none';//hide the answers box
     document.querySelector("#timer p").textContent = "--";
     event.target.style.opacity = "50%";
     let isTrue = false;
@@ -202,12 +209,12 @@ function answerAlert(event, num, interval) {
     } else {
         alert(`oops... \n your answer was wrong... \n try your chance with the next challenge...`)
     }
-    if(num<4){
-    document.getElementById("next").style.display = 'block';
-}else if(num===4){
-    const btnResults=document.getElementById("results");
-    btnResults.style.display="block";
-    document.querySelector("a").href="finalResults.html?brain="+brain;
-}
+    if (num < 4) {
+        document.getElementById("next").style.display = 'block';
+    } else if (num === 4) {
+        const btnResults = document.getElementById("results");
+        btnResults.style.display = "block";
+        document.querySelector("a").href = "finalResults.html?brain=" + brain;
+    }
 }
 
