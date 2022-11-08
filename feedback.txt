@@ -1,0 +1,16 @@
+
+
+
+Hello Naama this is your Hackaton feedback.
+In general i liked the idea of your game and the way you make the user go throw the game very smooth.
+I was excited while i was playing and was fun to have the timer running. 
+
+About the content learned in clase i saw a good implementation of DOM manipulation, a good use of time intervals
+to start actions and then stop when the intervals end. An also good use of event handlers.
+
+I woulded liked to see maybe more questions so you could have implement a function where you can set a 
+defined way for questions and answers to work and you will not need to create on fucntion for each question.
+First creating an array of object(question), and then with a foreach develop each of the questions games like 
+deploy the image, or check if the answer was correct. when working with classes this type of task will be easier.
+
+Good job congratulations on your Hackaton.
